@@ -1,0 +1,113 @@
+<?php
+// for access control header
+define("ALLOWED", '*');
+/*
+ * Implement hook_theme().
+ */
+function react_dashboard_theme(){
+  return array(
+    'react_dashboard' => array(
+      'template' => 'react-dashboard',
+      'path' => drupal_get_path('module', 'react_dashboard') . '/templates',
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function react_dashboard_menu() {
+  // Loads entire dashboard
+  $items['dashboard'] = array(
+    'title' => '',
+    'page callback' => '_react_dashboard_page',
+    'access arguments' => array('access content'),
+  );
+
+  // Get node data for dashboard resource
+  $items['dashboard_data'] = array(
+    'title' => 'Dashboard Data',
+    'page callback' => '_react_dashboard_data',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+
+  // Get data for autocomplete fields
+  $items['dashboard_autocomplete'] = array(
+    'title' => 'Dashboard Autocomplete',
+    'page callback' => '_react_dashboard_autocomplete',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
+
+/**
+ * Returns the dashboard page
+ * @param $node_title {string} title of resource containing physicians data (GBPW_Physicians)
+ */
+function _react_dashboard_page($node_title) {
+  $nodes = node_load_multiple(NULL, array("title" => $node_title));
+  $node = current($nodes);
+  drupal_add_js(array('react_dashboard' => array('currentNid' => $node->nid)), 'setting');
+  drupal_add_css( drupal_get_path('module','react_dashboard') . '/app/dist/bundle.min.css' );
+  drupal_add_css( drupal_get_path('module','react_dashboard') . '/app/custom.css' );
+  drupal_add_js( drupal_get_path('module','react_dashboard') . '/app/dist/bundle.min.js' );
+  return theme('react_dashboard');
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function react_dashboard_page_alter(&$page) {
+  header_remove('X-Frame-Options');
+}
+
+/**
+ * Get csv by name.
+ * csv should have an `id` column and a `name` column
+ * * will return json [{"label": "value"},...]
+ */
+function _react_dashboard_autocomplete($node_title) {
+  $nodes = node_load_multiple(NULL, array("title" => $node_title));
+  $node = current($nodes);
+  $datastore = dkan_datastore_go($node->uuid);
+  $table = $datastore->tableName;
+  $limit = array(0, 100);
+  try {
+    $query = db_select($table , 'r')
+      ->fields('r');
+    if(!empty($value)) {
+      $query->condition($field, '%'. $value . '%', 'LIKE');
+    }
+    $result = $query
+      ->range($limit[0], $limit[1])
+      ->execute();
+
+    while ($row = $result->fetchAssoc()) {
+      $options[] = array('label' => $row['name'], 'value' => $row['id']);
+    }
+  } catch(Exception $e) {
+    return _send_JSON(array('error' => $e->getMessage()));
+  }
+  return _send_JSON($options);
+}
+
+
+/**
+ * Returns node with dashboard resource
+ * react_dash will build queries using node data
+ * We use the datastore api to do the rest
+ */
+function _react_dashboard_data($node_title) {
+  $nodes = node_load_multiple(NULL, array("title" => $node_title));
+  $node = current($nodes);
+  return _send_JSON($node);
+}
+
+// set headers and send
+function _send_JSON($output) {
+    drupal_add_http_header('Access-Control-Allow-Origin', ALLOWED);
+    return drupal_json_output($output);
+}

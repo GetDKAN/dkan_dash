@@ -1,0 +1,109 @@
+#main {
+  padding-top: 0px;
+}
+.dashboard-title {
+  display: none;
+}
+.react-dash-checkbox input[type="checkbox"]:focus{
+  outline:0;
+}
+.react-dash-checkbox input[type='checkbox'] {
+  -webkit-appearance:none;
+  width:30px;
+  height:30px;
+  background:white;
+  border-radius:5px;
+  border:2px solid white;
+  top:5px;
+  padding: 10px;
+  margin-left:0 !important;
+  padding-left:0 !important;
+  transform: scale(1) !important;
+  vertical-align: middle;
+  margin-right:0.5em;
+  box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+.react-dash-checkbox input[type='checkbox']:checked {
+  background: #000;
+}
+
+.react-dash-checkbox input:disabled, .is-disabled .Select-placeholder {
+  background-color: rgba(200, 200, 200, .6);
+  color: rgba(150, 150, 150, .6);
+}
+/* React Dash Checkbox */
+.react-dash-checkbox {
+  font-size:1em;
+  line-height: normal;
+  display: table;
+  margin-left:0;
+  padding-left:0;
+  margin-bottom:20px;
+}
+.react-dash-checkbox li {
+  list-style:none;
+  float: none;
+}
+.react-dash-checkbox li label {
+  font-weight:300;
+  vertical-align: middle;
+  margin-bottom: 0px;
+}
+.react-dash-checkbox-item {
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 1em;
+}
+
+.flexbox-centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 576px) {
+  .flexbox-centered {
+    display: block;
+  }
+  #metrics-row .card {
+    width: 100% !important;
+  }
+  .react-dash-checkbox {
+    display: block;
+  }
+  .react-dash-checkbox-item {
+    display: block;
+  }
+  #main-wrapper .card-header {
+    margin-bottom: 10px;
+  }
+  .card-header-content, .react-dash-checkbox li label {
+    font-size: 0.7em;
+  }
+  #metrics-header-row h2 {
+    padding-left: 14px;
+  }
+  #dashboard-header .card-header {
+    font-size: normal !important;
+  }
+}
+#metrics-row .card {
+  flex-grow: 1; /* default 0 */
+  width: 180px;
+  margin-right: 15px;
+}
+
+#metrics-header-row h2, .card-header {
+  padding-bottom: 15px !important;
+  padding-left: 0px;
+  margin-left: 15px;
+}
+
+#dashboard-header .card-header {
+  font-size: 2em;
+  font-weight: bold;
+}
+.filters-row .card-header {
+  margin-top: 0px;
+}
