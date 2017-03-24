@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { Dashboard, Card, BaseComponent, Dataset, DataHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash';
+import { Dashboard, Card, BaseComponent, Dataset, DataHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
+import customDataHandlers from './customDataHandlers';
 import Datastore from './datastore';
 import {isArray, isEmpty,  mapValues, reduce, isEqual, pick, intersection} from 'lodash';
 import './stylesheets/project.css';
 
-// load deps from custom dash folder
-import { CustomDataHandlers } from '../../../custom_dash/customDash';
-import '../../../custom_dash/custom.css';
-
 let baseUrl = '';
-
-for (let k in CustomDataHandlers) { 
-  DataHandler.set(k, CustomDataHandlers[k]);
-}
 
 export default class GADashboard extends Dashboard {
   constructor(props) {
     super(props);
-    console.log('gbpw_dev rc-1', props);
-
-    
+    console.log('gbpw_dev rc-1');
 
     this.Datastore = new Datastore({
       baseUrl: baseUrl,
@@ -41,7 +32,7 @@ export default class GADashboard extends Dashboard {
     let dataKeys = Object.keys(this.props.dataResources);
     let i = 0;
 
-    appliedFilters = appliedFilters || Object.assign({}, this.state.appliedFilters);
+    appliedFilters = appliedFilters || Object.assign(this.state.appliedFilters);
 
     dataKeys.forEach( (dataKey) => {
       let qObj = Object.assign({}, this.props.dataResources[dataKey]);
@@ -54,7 +45,7 @@ export default class GADashboard extends Dashboard {
         dashData[dataKey] = response;
         
         if (i  === dataKeys.length) {
-          this.setState({data: dashData, isFetching: false});
+          this.setState({data: dashData, isFeching: false});
         }
       }).catch(e => {
         console.error('Error fetching resource', dataKey, qObj, e);
@@ -212,7 +203,6 @@ export default class GADashboard extends Dashboard {
                   let props = Object.assign(element, {globalData: this.state.data, appliedFilters: this.state.appliedFilters, vars: this.props.vars}, routeParams);
                   props.data = this.getChildData(element);
                   props.key = 'el__' + key;
-                  props.isFetching = this.state.isFetching;
                   let output;
 
                   if (props.cardStyle) {

@@ -47,19 +47,6 @@ export var settings = {
         }
       },
     },
-    addlPhysData: {
-      uuid: '302eeb05-8422-4217-8660-1929bfcaae18',
-      queries: {
-        by_county_2: {
-          group_by: ['WL2 County'],
-          sum: 'County2'
-        },
-        by_county_3: {
-          group_by: ['WL3 County'],
-          sum: 'County3'
-        }
-      }
-    },
     countyData: {
       uuid: '107ff139-55d1-4b3e-8413-800a122bf1b0',
       queries: {
