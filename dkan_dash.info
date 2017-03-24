@@ -1,4 +1,4 @@
-name = React Dashboard
+name = Dkan Dash
 description = Provides the functionality to create react dashboards
 core = 7.x
 package = NuCivic

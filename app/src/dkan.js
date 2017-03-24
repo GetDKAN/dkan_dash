@@ -14,14 +14,16 @@ import './react-dashboard.min.css';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
-import { settings } from './settings';
+import { Settings } from '../../../custom_dash/customDash';
 import GADashboard from './app';
+
+console.log('SS', Settings);
 
 class MyDashboard extends Component {
   render() {
     let z = {};
     z.appliedFilters = (this.state) ? this.state.appliedFilters : {};
-    const props = Object.assign({}, this.props, z, settings);
+    const props = Object.assign({}, this.props, z, Settings);
     return <GADashboard {...props}/>
   }
 }

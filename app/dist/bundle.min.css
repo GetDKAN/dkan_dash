@@ -118,4 +118,31 @@
 }
 .filters-row .card-header {
   margin-top: 0px;
+}/* Metrics */
+.page-dashboard .card-metric .metric {min-height: 7.5em; padding:none !important}
+.page-dashboard .card-metric-number {width:100%; font-size:2em}
+.page-dashboard .card-metric-caption {width:100%; text-align:center}
+.page-dashboard .card-metric-icon {display:none}
+.page-dashboard .card-metric div.col-sm-9.col-lg-8 {width:100%; text-align:center}
+
+.dashboard-bar-charts {width:100%}
+.county-autocomplete {
+  width:50%;
+  float:none !important;
+  display: inline-block;
+  padding:1em
 }
+.specialty-autocomplete {
+  width:50%;
+  float:none !important;
+  display: inline-block;
+  padding:1em
+}
+
+/* Dashboard Card Styles*/
+.fa {margin-right: 15px; margin-bottom:-10px;font-size:1em !important}
+.card-header {margin: 25px 0 35px 0}
+
+/* Hide Drupal Stuff */
+header, .breadcrumb {display:none !important}
+
