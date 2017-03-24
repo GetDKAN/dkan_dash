@@ -4,11 +4,11 @@ define("ALLOWED", '*');
 /*
  * Implement hook_theme().
  */
-function react_dashboard_theme(){
+function dkan_dash_theme(){
   return array(
-    'react_dashboard' => array(
-      'template' => 'react-dashboard',
-      'path' => drupal_get_path('module', 'react_dashboard') . '/templates',
+    'dkan_dash' => array(
+      'template' => 'dkan-dash',
+      'path' => drupal_get_path('module', 'dkan_dash') . '/templates',
     ),
   );
 }
@@ -16,7 +16,7 @@ function react_dashboard_theme(){
 /**
  * Implements hook_menu().
  */
-function react_dashboard_menu() {
+function dkan_dash_menu() {
   // Loads entire dashboard
   $items['dashboard'] = array(
     'title' => '',
@@ -54,13 +54,13 @@ function _react_dashboard_page($node_title) {
   drupal_add_css( drupal_get_path('module','react_dashboard') . '/app/dist/bundle.min.css' );
   drupal_add_css( drupal_get_path('module','react_dashboard') . '/app/custom.css' );
   drupal_add_js( drupal_get_path('module','react_dashboard') . '/app/dist/bundle.min.js' );
-  return theme('react_dashboard');
+  return theme('dkan_dash');
 }
 
 /**
  * Implements hook_page_alter().
  */
-function react_dashboard_page_alter(&$page) {
+function dkan_dash_page_alter(&$page) {
   header_remove('X-Frame-Options');
 }
 
