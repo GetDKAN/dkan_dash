@@ -16,7 +16,7 @@
     "react-dom": "*",
     "whatwg-fetch": "^2.0.2",
     "react-dash": "^0.5.0",
-    "react-dash-dev": "^0.6.0"
+    "react-dash-dev": "0.6.x"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
