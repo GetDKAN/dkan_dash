@@ -1,3 +1,8 @@
+# !!DEPRECATED!! - !!UNSUPPORTED!! - !!ETC!!
+# use 0.6.X branch or later
+This branch exists largely for historical reasons. Use 0.6.x or later for dashboard development with DKAN, or check out
+https://github.com/NuCivic/react-dash
+
 # React Dashboard Drupal Module
 
 This is a boilerplate to create dashboards in Drupal by using the **React Dashboard** library. Library documentation is available at https://github.com/NuCivic/react-dashboard
