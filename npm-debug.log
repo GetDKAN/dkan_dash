@@ -1,0 +1,22 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/pj/.nvm/versions/node/v7.1.0/bin/node',
+1 verbose cli   '/home/pj/.nvm/versions/node/v7.1.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'build' ]
+2 info using npm@3.10.9
+3 info using node@v7.1.0
+4 verbose stack Error: ENOENT: no such file or directory, open '/home/pj/Proj/NuCivic/repos/dkan_dash/package.json'
+5 verbose cwd /home/pj/Proj/NuCivic/repos/dkan_dash
+6 error Linux 4.4.0-66-generic
+7 error argv "/home/pj/.nvm/versions/node/v7.1.0/bin/node" "/home/pj/.nvm/versions/node/v7.1.0/bin/npm" "run" "build"
+8 error node v7.1.0
+9 error npm  v3.10.9
+10 error path /home/pj/Proj/NuCivic/repos/dkan_dash/package.json
+11 error code ENOENT
+12 error errno -2
+13 error syscall open
+14 error enoent ENOENT: no such file or directory, open '/home/pj/Proj/NuCivic/repos/dkan_dash/package.json'
+15 error enoent ENOENT: no such file or directory, open '/home/pj/Proj/NuCivic/repos/dkan_dash/package.json'
+15 error enoent This is most likely not a problem with npm itself
+15 error enoent and is related to npm not being able to find a file.
+16 verbose exit [ -2, true ]
