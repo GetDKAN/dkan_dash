@@ -28,13 +28,10 @@ export default class Datastore {
         },
         contentType: 'application/json',
         body: JSON.stringify(queries)
-      }).then(response => {
-        return response.json();
-      }).then( data => {
-        return resolve(data);
-      }).catch(e => {
-        return reject(e);
-      });
+      })
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(e => reject(e));
     })
   }
 
@@ -56,7 +53,6 @@ export default class Datastore {
         }
       }
     }
-
     return false;
   }
 

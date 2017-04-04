@@ -16,9 +16,7 @@ export default class DKANDash extends Dashboard {
       baseUrl: baseUrl,
       dataResources: this.props.dataResources
     });
-
     this.state.appliedFilters = this.getConstantAppliedFilters();
-    console.log('DKAN Dash - charter schools dev - 111', this);
   }
 
   applyDataHandlers(datahandlers, componentData=[]) {
