@@ -22,7 +22,7 @@ export default class DKANDash extends Dashboard {
   applyDataHandlers(datahandlers, componentData=[]) {
     let _handlers = datahandlers;
     let _appliedFilters = this.state.appliedFilters || {};
-    let _data = DataHandler.handle.call(this, _handlers, componentData, this.state.data, {e:'foo'}, _appliedFilters);
+    let _data = DataHandler.handle.call(this, _handlers, componentData, this.state.data, {}, _appliedFilters);
     return _data;
   }
 

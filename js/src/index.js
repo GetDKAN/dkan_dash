@@ -25,7 +25,7 @@ if (Drupal.settings.dkanDash.devSettings[settingsPath]) {
   settings = Drupal.settings.dkanDash.dashboard;
 }
 
-const DKANDashWrapper = (props) => <DKANDash {...settings} />;
+const DKANDashWrapper = (props) => <DKANDash {...props} {...settings} />;
 
 // Wrap Dashboard component in router
 class App extends Component {
