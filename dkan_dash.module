@@ -80,3 +80,42 @@ function dkan_dash_autocomplete($node, $field, $value) {
 
   return drupal_json_output($options);
 }
+/**
+ * Implements hook_form_alter().
+ */
+function dkan_dash_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'react_dashboard_node_form':
+      drupal_add_css(drupal_get_path('module', 'dkan_dash') . '/css/dkan_dash.css');
+      $form['#attached']['libraries_load'][] = array('jsoneditor');
+      $form['#attached']['js'][] =  drupal_get_path('module', 'dkan_dash') . '/js/editor.js';
+      break;
+  }
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function dkan_dash_libraries_info() {
+  $libraries = array();
+  $libraries['jsoneditor'] = array(
+    'name' => 'JSONEditor',
+    'vendor url' => 'https://github.com/josdejong/jsoneditor',
+    'download url' => 'https://github.com/josdejong/jsoneditor/archive/master.zip',
+    'path' => '',
+    'version arguments' => array(
+      'file' => 'package.json',
+      'pattern' => '/"version": "(\d+\.\d+\.\d+)"/',
+    ),
+    'dependencies' => array('d3'),
+    'files' => array(
+      'js' => array(
+        'dist/jsoneditor.min.js',
+      ),
+      'css' => array(
+        'dist/jsoneditor.min.css',
+      ),
+    ),
+  );
+  return $libraries;
+}
