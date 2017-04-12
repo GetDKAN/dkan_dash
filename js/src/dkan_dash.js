@@ -5,6 +5,8 @@ import {isArray, isEmpty,  mapValues, reduce, isEqual, pick, intersection} from 
 
 let baseUrl = '';
 
+console.log('DKAN-DASH.js 0.6.x-dev 4-12-2017');
+
 for (let name in Drupal.settings.dkanDash.dataHandlers) {
   DataHandler.set(name, Drupal.settings.dkanDash.dataHandlers[name]);
 }
