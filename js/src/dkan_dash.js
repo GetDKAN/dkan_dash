@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dashboard, Card, BaseComponent, Dataset, DataHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
+import { Dashboard, Card, BaseComponent, Dataset, DataHandler, StateHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
 import Datastore from './datastore';
 import {isArray, isEmpty,  mapValues, reduce, isEqual, pick, intersection} from 'lodash';
 
@@ -7,6 +7,10 @@ let baseUrl = '';
 
 for (let name in Drupal.settings.dkanDash.dataHandlers) {
   DataHandler.set(name, Drupal.settings.dkanDash.dataHandlers[name]);
+}
+
+for (let name in Drupal.settings.dkanDash.stateHandlers) {
+  StateHandler.set(name, Drupal.settings.dkanDash.stateHandlers[name]);
 }
 
 export default class DKANDash extends Dashboard {
