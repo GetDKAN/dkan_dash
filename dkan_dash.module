@@ -26,6 +26,7 @@ function dkan_dash_preprocess_node(&$variables) {
         'currentNid' => $variables['nid'],
         'dashboard' => json_decode($variables['field_dash_settings'][0]['value']),
         'dataHandlers' =>  (object)array(),
+        'stateHandlers' =>  (object)array(),
         'devSettings' => (object)array(),
       )
     ), 'setting');
