@@ -1,11 +1,11 @@
+console.log('DKAN Dash Dev - 0.6.x-a');
+
 import React, { Component } from 'react';
 import { Dashboard, Card, BaseComponent, Dataset, DataHandler, StateHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
 import Datastore from './datastore';
 import {isArray, isEmpty,  mapValues, reduce, isEqual, pick, intersection} from 'lodash';
 
 let baseUrl = '';
-
-console.log('DKAN-DASH.js 0.6.x-dev 4-12-2017');
 
 for (let name in Drupal.settings.dkanDash.dataHandlers) {
   DataHandler.set(name, Drupal.settings.dkanDash.dataHandlers[name]);
@@ -22,13 +22,15 @@ export default class DKANDash extends Dashboard {
       baseUrl: baseUrl,
       dataResources: this.props.dataResources
     });
+
     this.state.appliedFilters = this.getConstantAppliedFilters();
+    console.log('DKAN Dash - charter schools dev - 111', this);
   }
 
   applyDataHandlers(datahandlers, componentData=[]) {
     let _handlers = datahandlers;
     let _appliedFilters = this.state.appliedFilters || {};
-    let _data = DataHandler.handle.call(this, _handlers, componentData, this.state.data, {}, _appliedFilters);
+    let _data = DataHandler.handle.call(this, _handlers, componentData, this.state.data, {e:'foo'}, _appliedFilters);
     return _data;
   }
 
@@ -92,6 +94,7 @@ export default class DKANDash extends Dashboard {
   }
 
   /**
+   * @@TODO - I think this is deprecated
    * Return all filters which are defined as part of
    * settings.dataResources -> queries
    */
@@ -181,51 +184,5 @@ export default class DKANDash extends Dashboard {
     });
 
     return toFilter;
-  }
-
-  render() {
-    let settings = this.props;
-    let regions = settings.regions || [];
-    let markup;
-    let routeParams = pick(settings, ['history', 'location', 'params', 'route', 'routeParams', 'routes']);
-    // We wrap the whole dashboard in the route so we that we get paramater info in the els
-    return (
-        <div className="container">
-          <link rel="stylesheet" type="text/css" href={settings.faPath} />
-          {regions.map( (region, key) => {
-
-            if (region.multi) {
-              let multiRegionKey = this.getChildData(region);
-              region.children = region.elements[multiRegionKey];
-            }
-
-            return (
-              <div id={region.id} key={'top_' + key} className={region.className} >
-                {region.children.map( (element, key) => {
-                  let childrenProps = Object.assign(element, {
-                    globalData: this.state.data,
-                    appliedFilters: this.state.appliedFilters,
-                    vars: settings.vars
-                  }, routeParams);
-                  childrenProps.data = this.getChildData(element);
-                  childrenProps.key = 'el__' + key;
-                  childrenProps.isFetching = this.state.isFetching;
-                  let output;
-                  if (childrenProps.cardStyle) {
-                    output =
-                      <Card key={key} {...element}>
-                        {React.createElement(Registry.get(element.type), childrenProps)}
-                      </Card>
-                  } else {
-                    output =
-                      React.createElement(Registry.get(element.type), childrenProps)
-                  }
-                  return output;
-                })}
-              </div>
-            )
-          })}
-        </div>
-    );
   }
 }
