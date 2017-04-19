@@ -141,6 +141,7 @@ function dkan_dash_libraries_info() {
  */
 function dkan_dash_preprocess_page(&$vars) {
   if (in_array_match('/page__dashboard__iframe/', $vars['theme_hook_suggestions'])) {
+    header_remove('X-Frame-Options');
     $vars['theme_hook_suggestions'][] = 'react_dashboard-embed';
   }
 }
