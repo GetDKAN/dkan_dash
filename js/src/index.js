@@ -46,3 +46,9 @@ class App extends Component {
 document.addEventListener('DOMContentLoaded', function(event) {
   ReactDOM.render(<App />, document.getElementById('root'));
 });
+
+setInterval(() => {
+  if(parent.postMessage) {
+    parent.postMessage(document.body.scrollHeight, '*');
+  }
+}, 500);
