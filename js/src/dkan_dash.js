@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dashboard, Card, BaseComponent, Dataset, DataHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
+import { Dashboard, Card, BaseComponent, Dataset, DataHandler, StateHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
 import Datastore from './datastore';
 import {isArray, isEmpty,  mapValues, reduce, isEqual, pick, intersection} from 'lodash';
 
@@ -7,6 +7,10 @@ let baseUrl = '';
 
 for (let name in Drupal.settings.dkanDash.dataHandlers) {
   DataHandler.set(name, Drupal.settings.dkanDash.dataHandlers[name]);
+}
+
+for (let name in Drupal.settings.dkanDash.stateHandlers) {
+  StateHandler.set(name, Drupal.settings.dkanDash.stateHandlers[name]);
 }
 
 export default class DKANDash extends Dashboard {
@@ -175,51 +179,5 @@ export default class DKANDash extends Dashboard {
     });
 
     return toFilter;
-  }
-
-  render() {
-    let settings = this.props;
-    let regions = settings.regions || [];
-    let markup;
-    let routeParams = pick(settings, ['history', 'location', 'params', 'route', 'routeParams', 'routes']);
-    // We wrap the whole dashboard in the route so we that we get paramater info in the els
-    return (
-        <div className="container">
-          <link rel="stylesheet" type="text/css" href={settings.faPath} />
-          {regions.map( (region, key) => {
-
-            if (region.multi) {
-              let multiRegionKey = this.getChildData(region);
-              region.children = region.elements[multiRegionKey];
-            }
-
-            return (
-              <div id={region.id} key={'top_' + key} className={region.className} >
-                {region.children.map( (element, key) => {
-                  let childrenProps = Object.assign(element, {
-                    globalData: this.state.data,
-                    appliedFilters: this.state.appliedFilters,
-                    vars: settings.vars
-                  }, routeParams);
-                  childrenProps.data = this.getChildData(element);
-                  childrenProps.key = 'el__' + key;
-                  childrenProps.isFetching = this.state.isFetching;
-                  let output;
-                  if (childrenProps.cardStyle) {
-                    output =
-                      <Card key={key} {...element}>
-                        {React.createElement(Registry.get(element.type), childrenProps)}
-                      </Card>
-                  } else {
-                    output =
-                      React.createElement(Registry.get(element.type), childrenProps)
-                  }
-                  return output;
-                })}
-              </div>
-            )
-          })}
-        </div>
-    );
   }
 }
