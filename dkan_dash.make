@@ -1,6 +1,6 @@
 core: 7.x
 api: '2'
-projects:
+libraries:
   jsoneditor:
     download:
       type: git
