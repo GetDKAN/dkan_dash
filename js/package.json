@@ -13,8 +13,7 @@
   },
   "dependencies": {
     "react": "*",
-    "react-dash": "^0.5.0",
-    "react-dash-dev": "0.6.x",
+    "react-dash": "https://github.com/NuCivic/react-dash#master",
     "react-dom": "*",
     "whatwg-fetch": "^2.0.2"
   },
