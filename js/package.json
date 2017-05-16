@@ -12,6 +12,7 @@
     "url": "https://github.com/mvader/react-es6-webpack-karma-boilerplate.git"
   },
   "dependencies": {
+    "create-react-class": "^15.5.2",
     "react": "*",
     "react-dash": "https://github.com/NuCivic/react-dash#master",
     "react-dom": "*",
