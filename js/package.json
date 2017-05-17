@@ -14,7 +14,7 @@
   "dependencies": {
     "create-react-class": "^15.5.2",
     "react": "*",
-    "react-dash": "https://github.com/NuCivic/react-dash#master",
+    "react-dash": "https://github.com/NuCivic/react-dash#fix-multiple-construct-calls",
     "react-dom": "*",
     "whatwg-fetch": "^2.0.2"
   },
