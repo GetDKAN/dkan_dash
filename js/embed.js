@@ -1,7 +1,6 @@
 /**
  * @file
  */
-console.log('bla');
 (function ($) {
   Drupal.behaviors.reactDashboardEmbed = {
     attach: function (context) {
