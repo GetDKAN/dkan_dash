@@ -12,7 +12,7 @@ DKAN Dash is a module for creating multi-faceted data visualizations based on da
 
 As an example of what you might get from wiring it all up, here is a screenshot from a recent project for the Georgia Board for Physician Workforce:
 
-[SCREENSHOT]
+![2017-05-22_14-39-13](https://cloud.githubusercontent.com/assets/309671/26326915/5a69f55e-3f0b-11e7-99c3-a84e88d16f74.png)
 
 Changing the filter values at the top will reload the data -- and, in some cases, change the layout -- of the visualizations below them.
 
