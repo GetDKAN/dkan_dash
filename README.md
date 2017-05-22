@@ -55,9 +55,6 @@ In addition to the settings object, which is stored in the database, the DKAN Da
 
 The future of DKAN Dash and its underlying libraries is bright. As we continue to roll out dashboard implementations the list of features grows, and the stability and performance of the platform continues to improve. While development at this point is being driven by immediate project requirements, there are some big things brewing:
 
-### Dashboard Creation - UX
-Currently, in order to generate the dashboard pages you need to speak Javascript - or at least JSON. We are looking forward to the day, however, when less technical users can use an graphical interface to generate visualizations related to their DKAN data.
-
 ### Additional components
 
 Under development we have:
