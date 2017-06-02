@@ -17,7 +17,7 @@ import DKANDash from './dkan_dash';
 import { DataHandler } from 'react-dash';
 
 let settings;
-let settingsPath = window.location.pathname.substr(1).replace('/', '__');
+let settingsPath = window.location.pathname.substr(1).replace('/iframe', '').replace('/', '__');
 
 if (Drupal.settings.dkanDash.devSettings[settingsPath]) {
   settings = Drupal.settings.dkanDash.devSettings[settingsPath];
