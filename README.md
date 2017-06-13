@@ -77,3 +77,21 @@ The react-dash library [ships with an example project](https://github.com/NuCivi
 2. Take a look at the files in the [custom_dash](https://github.com/NuCivic/custom_dash) repo to see how a specific implementation would be structured.
 3. Look for news and updates on the [DKAN blog](http://getdkan.com/blog/)
 4. Join the `#dashboards` channel on the [DKAN Community Slack](https://dkansignup.herokuapp.com/)
+
+## Development
+
+## Normal workflow
+```
+> yarn
+> npm run dev
+```
+
+## Extended workflow
+The extended workflow includes changes in react-dash library. Sometimes it's useful to work with dkan_dash and react-dash at the same time. For such cases you might want to compile react-dash, copy the files to dkan_dash and then compile dkan_dash. 
+However this is not very straight forward so dkan_dash build grab from the environment variable REACT_DASH_PATH the path to the react-dash library in order to do this process automatically.
+
+```
+> yarn
+> export REACT_DASH_PATH=/path/to/react/dash
+> yarn run dev
+```
