@@ -16,9 +16,7 @@ function dkan_dash_theme($existing, $type, $theme, $path){
     'path' => $path,
   );
   $theme['react_dashboard-embed'] = array(
-    'variables' => array(
-      'content' => t('HTML for dashboard embeds'),
-    ),
+    'variables' => array(),
     'template' => 'react_dashboard-embed',
     'path' => $path,
   );
@@ -56,13 +54,22 @@ function dkan_dash_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK
   );
-  $items['dashboard/%node/iframe'] = array(
-    'title' => 'Dashboard',
+  $items['dashboard/%dashboard/iframe'] = array(
     'page callback' => 'dkan_dash_iframe',
     'page arguments' => array(1),
     'access arguments' => array('access content'),
   );
   return $items;
+}
+
+function dashboard_load($name) {
+  $alias = 'dashboard/' . $name;
+  $path = drupal_lookup_path('source', $alias);
+  $node = menu_get_object('node', 1, $path);
+  if(!empty($node)) {
+    return $node;
+  }
+  return FALSE;
 }
 
 /**
@@ -141,7 +148,7 @@ function dkan_dash_libraries_info() {
  * Implements hook_preprocess_page().
  */
 function dkan_dash_preprocess_page(&$vars) {
-  if (in_array_match('/page__dashboard__iframe/', $vars['theme_hook_suggestions'])) {
+  if (in_array_match('/page__dashboard__.+__iframe/', $vars['theme_hook_suggestions'])) {
     header_remove('X-Frame-Options');
     $vars['theme_hook_suggestions'][] = 'react_dashboard-embed';
   }

@@ -16,6 +16,103 @@ As an example of what you might get from wiring it all up, here is a screenshot 
 
 Changing the filter values at the top will reload the data -- and, in some cases, change the layout -- of the visualizations below them.
 
+## Anatomy of a dashboard
+- Settings file: it holds all the configuration required to instantiate a dashboard.
+- Data Handlers: a set of functions to adapt the raw data for each component.
+- State handlers: a set of functions to manipulate the application state base on conditions.
+- Custom components: components that are not included in the react-dash library and you need to create ad hoc for your project.
+
+## Settings object
+Dashboard are just javascript objects. Concretely a settings object that stores all the required information to built a dashboard. Namely: layouts, components, data sources, data handlers, etc.
+
+You have two options to start a DKAN Dash project: 
+
+1. Use the module as it is without any custom component.
+2. Add customizations like components and data handlers.
+
+The second option is by far the most common scenario.
+
+Just remember that all the customizations needs to happen inside the `custom_dash` module. Don't hack dkan_dash.
+
+This setting object can be placed either in a file or in the database. 
+
+**IMPORTANT: Database stored settings always takes precedent over file stored settings**
+
+### Database stored settings
+This option is ideal when you need to perform updates in your dashboard without push any code. For example, if you need to change the dashboard title, chart colors, field names, etc.
+
+### File stored settings
+For developers it's easy to work with files. Files can be tracked by a control version system so it's easy to rollback when something wrong happens. 
+
+By convention, the settings files should be placed in `custom_dash/js/src` and with the suffix `Settings` named like `dashboardNameSettings.js`.
+
+**In order to use an object stored in a file you will need to follow some conventions:**
+
+- All the dashboard settings should be stored at `Drupal.settings.dkanDash.devSettings.some__uri`
+- Each devSettings key is a dashboard setting object
+- Dashboard settings are pick base on the path. For example, for the path `dashboard/people` you need a key `dashboard__people` in the `Drupal.settings.dkanDash.devSettings` object.
+- Setting objects should not contain functions. To transform data, data handlers are the way to go. Remember you can create and use your own components.
+
+## Quick start
+
+### Requirements
+- DKAN
+- react-dash
+- npm or yarn
+
+### Steps
+1. Make sure you have JSONEditor and react-dash libraries in the libraries directory.
+2. Download and enable dkan_dash.
+3. Go to `/node/add/react-dashboard`
+4. Set a title
+5. Switch the JSONEditor to code mode.
+6. Copy and paste the following JSON object and save
+
+```
+{
+  "title": "A dashboard title",
+  "regions": [
+    {
+      "id": "some-region",
+      "children": [
+        {
+          "id": "hello",
+          "type": "Markup",
+          "content": "<h1>Hello</h1>"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Customizations
+By default react-dash was created to be customized. These may include data handlers, custom components, state handlers, etc.
+
+### Before start
+Because all the custom code is transpiled all the files must reside inside the directory `custom_dash/src/js`. Files outside that folder will be ignored.
+Beside this, you also need import your files within `custom_dash/src/js/index.js`. By doing this, babel (the tranpiler) knows which files should be transpiled and which ignored.
+
+## How to transpile your custom code
+```
+> yarn
+> yarn run dev
+```
+
+## Extended workflow
+
+Sometimes it's useful to develop react-dash features while you are working in a project. Without the extended workflow if you need to add a new feature to react-dash and test that in your project you will need to rebuild react-dash, copy distribution files, rebuild dkan_dash, etc. 
+
+Custom Dash build process allow you to define some environment variables indicating where `react-dash` and `dkan_dash` repositories are located and thus perform the build steps automatically.
+
+```
+> yarn
+> export REACT_DASH_PATH=/path/to/react/dash
+> export REACT_DASH_PATH=/path/to/dkan_dash
+> yarn run dev
+```
+
+
 ## Who DKAN Dash is for
 We built DKAN Dash as a way to do complex custom data visualization dashboards in a repeatable way using DKAN's [Datastore API](http://docs.getdkan.com/en/stable/apis/datastore-api.html) as a data backend. DKAN Dash and its supporting ecosystem are really a development framework that allows for highly customizable data visualizations while minimizing boilerplate code and unnecessary repetition. 
 
@@ -74,6 +171,8 @@ The react-dash library [ships with an example project](https://github.com/NuCivi
 ## Further reading
 
 1. The [React Dash](https://react-dashboard.readthedocs.io) documentation is a complete resource for information on the standalone library.
-2. Take a look at the files in the [custom_dash](https://github.com/NuCivic/custom_dash) repo to see how a specific implementation would be structured.
-3. Look for news and updates on the [DKAN blog](http://getdkan.com/blog/)
-4. Join the `#dashboards` channel on the [DKAN Community Slack](https://dkansignup.herokuapp.com/)
+3. Take a look at the [Dkan documentation](http://dkan.readthedocs.io/en/latest/)
+4. Take a look at the files in the [custom_dash](https://github.com/NuCivic/custom_dash) repo to see how a specific implementation would be structured.
+5. Look for news and updates on the [DKAN blog](http://getdkan.com/blog/)
+6. Join the `#dashboards` channel on the [DKAN Community Slack](https://dkansignup.herokuapp.com/)
+
