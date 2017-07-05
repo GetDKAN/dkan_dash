@@ -4,7 +4,7 @@
   "description": "Library to create DKAN Dashboards using react.",
   "main": "index.js",
   "scripts": {
-    "build": "export MODE=production;node ./node_modules/webpack/bin/webpack.js",
+    "build": "export NODE_ENV=production;export MODE=production;node ./node_modules/webpack/bin/webpack.js",
     "build-dev": "export MODE=external;node ./node_modules/webpack/bin/webpack.js",
     "dev": "export MODE=development;node ./node_modules/webpack/bin/webpack.js --watch"
   },
