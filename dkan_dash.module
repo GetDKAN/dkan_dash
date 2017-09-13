@@ -150,6 +150,8 @@ function dkan_dash_libraries_info() {
 function dkan_dash_preprocess_page(&$vars) {
   if (in_array_match('/page__dashboard__.+__iframe/', $vars['theme_hook_suggestions'])) {
     header_remove('X-Frame-Options');
+    // Need to also remove from Drupal's cache of headers.
+    drupal_add_http_header('X-Frame-Options', FALSE);
     $vars['theme_hook_suggestions'][] = 'react_dashboard-embed';
   }
 }
