@@ -74,7 +74,10 @@ module.exports = {
       {
         test: /\.js?$/,
         loaders: ['babel-loader'],
-        include: path.join(__dirname, 'src')
+        include: [
+          /whatwg-.*/,
+          path.join(__dirname, 'src')
+        ]
       },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader') },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },

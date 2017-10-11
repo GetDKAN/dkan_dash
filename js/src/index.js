@@ -6,6 +6,7 @@ import 'nvd3/build/nv.d3.min.css';
 import 'react-dash/dist/react-dashboard.min.css';
 import 'react-select/dist/react-select.min.css';
 import 'fixed-data-table-2/dist/fixed-data-table.min.css';
+import 'babel-polyfill';
 
 /**
  * Don't remove this. Required dependencies.
