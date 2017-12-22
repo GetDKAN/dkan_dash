@@ -15,9 +15,9 @@
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
     "create-react-class": "^15.5.2",
-    "react": "*",
-    "react-dash": "https://github.com/NuCivic/react-dash/archive/v0.7.1.tar.gz",
-    "react-dom": "*",
+    "react": "15.6.2",
+    "react-dash": "https://github.com/NuCivic/react-dash/archive/v0.7.3.tar.gz",
+    "react-dom": "15.6.2",
     "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
@@ -33,10 +33,12 @@
     "chokidar": "^1.7.0",
     "colors": "^1.1.2",
     "css-loader": "^0.23.1",
+    "datatables.net-responsive-bs": "^2.2.0",
     "eslint-plugin-react": "^3.6.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "fs-extra": "^3.0.1",
+    "jquery": "^3.2.1",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.0",
