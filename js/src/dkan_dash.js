@@ -13,6 +13,10 @@ for (let name in Drupal.settings.dkanDash.stateHandlers) {
   StateHandler.set(name, Drupal.settings.dkanDash.stateHandlers[name]);
 }
 
+for (let name in Drupal.settings.dkanDash.filterHandlers) {
+  FilterHandler.set(name, Drupal.settings.dkanDash.filterHandlers[name]);
+}
+
 export default class DKANDash extends Dashboard {
   constructor(props) {
     super(props);
