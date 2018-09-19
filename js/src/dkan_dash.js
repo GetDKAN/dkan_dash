@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dashboard, Card, BaseComponent, Dataset, DataHandler, StateHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
+import { Dashboard, Card, BaseComponent, Dataset, DataHandler, FilterHandler, StateHandler, DataHandlers, EventDispatcher, Registry } from 'react-dash'
 import Datastore from './datastore';
 import {isArray, isEmpty,  mapValues, reduce, isEqual, pick, intersection} from 'lodash';
 
@@ -136,7 +136,6 @@ export default class DKANDash extends Dashboard {
 
   getChildData(component) {
     let data = [];
-
     if (component.dataHandlers) {
       data = this.applyDataHandlers(component.dataHandlers, component.data);
     } else if (component.data) {
