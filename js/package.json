@@ -16,7 +16,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "create-react-class": "^15.5.2",
     "react": "15.6.2",
-    "react-dash": "git://github.com/NuCivic/react-dash.git",
+    "react-dash": "https://github.com/NuCivic/react-dash/archive/v0.7.5.tar.gz",
     "react-dom": "15.6.2",
     "whatwg-fetch": "^2.0.2"
   },
